@@ -1,5 +1,9 @@
-__version__ = "1.2"
+from .core import *
+from .ui import *
+
+__version__ = "1.3"
 
 """
-Turkolib GUI
+Turkolib GUI Framework
+----------------------
 """
