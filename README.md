@@ -10,5 +10,6 @@ This is a Python GUI Library build to improve on the inconsistencies and unneces
 from turko import *
 
 turko = Turko()
+turko.title("My Turko App")
 turko.run()
 ```
