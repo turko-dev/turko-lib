@@ -7,5 +7,8 @@ This is a Python GUI Library build to improve on the inconsistencies and unneces
 <h3>Documentation</h3>
 
 ```python
+from turko import *
 
+turko = Turko()
+turko.run()
 ```
