@@ -3,6 +3,7 @@ from tkinter import ttk
 from .ui import Button
 from screeninfo import get_monitors
 
+import asyncio
 class Turko:
     def __init__(self):
         """
@@ -16,15 +17,23 @@ class Turko:
         self.core = tk.Tk()
         self.core.title("Turko App")
         self.core.attributes("-zoomed", True)
-
-        def configure(event):
-            self.w = event.width
-            self.h = event.height
-            self.core.geometry(f"{event.width}x{event.height}")
-            self.core.title(f"{self.w} {self.h}")
-
-        self.core.bind("<Configure>", configure)
         
+        self.width = 0
+        self.height = 0
+        
+        def configure(event):
+            self._setSize(event.width, event.height)
+            self.core.title(f"{self.width} {self.height}")
+        self.core.bind("<Configure>", configure)
+
+    def _setSize(self, w, h):
+        self.width = w
+        self.height = h
+
+    def testSize(self):
+        pass
+        
+
     def monitorcontrol(self, xi):
         """
         #Multiple Monitor Support Controls

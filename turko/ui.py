@@ -1,8 +1,16 @@
 import tkinter as tk
+from tkinter import ttk
 
-class Frame:
-    def __init__(self, core, padding=0):
-        pass
+class Frame(tk.Tk):
+    def __init__(self, core, width, height, padding=0):
+        frame = ttk.Frame(core.core, width=width, height=height, padding=padding)
+        frame.config(width=width, height=height)
+        frame.grid()
+
+
+
+
+            
 
 
 class Button:
