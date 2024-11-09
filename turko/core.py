@@ -1,9 +1,6 @@
 import tkinter as tk
-from tkinter import ttk
-from .ui import Button
 from screeninfo import get_monitors
 
-import asyncio
 class Turko:
     def __init__(self):
         """
@@ -14,24 +11,18 @@ class Turko:
         - initframe will initialise a base frame for the app to load
         - framepadding will give initframe a padding
         """
-        self.core = tk.Tk()
-        self.core.title("Turko App")
-        self.core.attributes("-zoomed", True)
-        
+        self.root = tk.Tk()
+        self.root.title("Turko App")
+        self.root.attributes("-zoomed", True)
         self.width = 0
         self.height = 0
         
-        def configure(event):
-            self._setSize(event.width, event.height)
-            self.core.title(f"{self.width} {self.height}")
-        self.core.bind("<Configure>", configure)
+        self.root.bind("<Configure>", self.setgeometry)
 
-    def _setSize(self, w, h):
-        self.width = w
-        self.height = h
-
-    def testSize(self):
-        pass
+    def setgeometry(self, event):
+        if(event.widget == self.root):
+            print(f"Root Console: {event.width}, {event.height}")
+ 
         
 
     def monitorcontrol(self, xi):
@@ -59,8 +50,8 @@ class Turko:
             if g == m: index = c
         return l[index]
         
-    def returncore(self):
-        return self.core
+    def giveroot(self):
+        return self.root
 
     def title(self, title="Turko App"):
         """
@@ -68,7 +59,7 @@ class Turko:
         ---------------------------------
         E.g. turko.title("My App Name")
         """
-        self.core.title(title)
+        self.root.title(title)
 
     def minsize(self, minwidth=500, minheight=500):
         """
@@ -76,7 +67,7 @@ class Turko:
         ---------------------------------
         E.g. turko.minsize(500, 500)
         """
-        self.core.minsize(minwidth, minheight)
+        self.root.minsize(minwidth, minheight)
 
     def maxsize(self, maxwidth=500, maxheight=500):
         """
@@ -85,15 +76,15 @@ class Turko:
         We highly advise against setting a maxsize as your app should be resizable to any size for maximum user-friendliness
         E.g. turko.maxsize(500, 500)
         """
-        self.core.maxsize(maxwidth, maxheight)
+        self.root.maxsize(maxwidth, maxheight)
     def minmaxsize(self, minwidth=400, minheight=300, maxwidth=960, maxheight=780):
         """
         Set the minimum and maximum sizes of this app's window
         ---------------------------------
         E.g. turko.minmaxsize(300, 400, 1920, 1080)
         """
-        self.core.minsize(minwidth, minheight)
-        self.core.maxsize(maxwidth, maxheight)
+        self.root.minsize(minwidth, minheight)
+        self.root.maxsize(maxwidth, maxheight)
         
         
     def run(self):
@@ -102,6 +93,6 @@ class Turko:
         ---------------------------------
         E.g. turko.mainloop()
         """
-        self.core.mainloop()
+        self.root.mainloop()
 
     
