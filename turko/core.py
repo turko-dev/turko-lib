@@ -16,7 +16,6 @@ class Turko:
         self.root.attributes("-zoomed", True)
         self.width = 0
         self.height = 0
-        
         self.root.bind("<Configure>", self.setgeometry)
 
     def setgeometry(self, event):
