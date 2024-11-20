@@ -1,7 +1,7 @@
 from tkinter import ttk
 
 class Frame:
-    def __init__(self, parent, width, height):
+    def __init__(self, parent, width, height, backgroundColor):
         self.parent = parent 
         #Styling Here
         s = ttk.Style()
@@ -9,11 +9,13 @@ class Frame:
         
         
         self.frame = ttk.Frame(master=parent.root, width=0, height=0, style="BW.TLabel")
-        #there are only 4 cases
+        """
+        there are only 4 cases
         #1 - only width is percentage (100%, 500px)
         #2 - only height is percentage (500px, 100%)
         #3 - both width and height is percentage (100%, 50%)
         #4 - non are percentage (500px, 500px)
+        """
         if(isinstance(width, str) and (isinstance(height, int))):
             percentage_string = []
             self.percentage_width = ""
