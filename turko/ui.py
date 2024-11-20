@@ -1,14 +1,43 @@
 from tkinter import ttk
+from tkinter import font
+
+
+
+
+class Font:
+    def __init__(self, name, family=None, size=None, weight=None):
+        """
+        E.g. font = Font(name, family, size, weight)
+        """
+        defaultFont = font.Font(family='Helvetica', name='myFont', size=12, weight='bold')
+        defaultValues = {"family": 'Helvetica', "size":12, "weight":'bold'}
+        self.name = name
+        
+        if(family == None):self.family = defaultValues['family']
+        else: self.family = family
+        if(size == None):self.size = defaultValues['size']
+        else: self.size = size
+        if(weight == None):self.weight = defaultValues['weight']
+        else: self.weight = weight
+        
+
+    def __str__(self):
+        return f"<turko.Font(name=\"{self.name}\", family=\"{self.family}\", size={self.size}, weight=\"{self.weight}\")"
 
 class Frame:
-    def __init__(self, parent, width, height, backgroundColor):
-        self.parent = parent 
+    def __init__(self, parent, width, height, backgroundColor="#FFFFFF", font="DefaultFont"):
+        #Type Validation
+        if not (isinstance(width, str) or isinstance(width, int)): raise TypeError("width attribute must be either a string percentage or a integer pixel value such as \"100%\" or 100")
+        if not (isinstance(height, str) or isinstance(height, int)): raise TypeError("height attribute must be either a string percentage or a integer pixel value such as \"100%\" or 100")
+        if not (isinstance(backgroundColor, str)): raise TypeError("backgroundColor attribute must be a string such as \"#FFFFFF\"")
+        if not (isinstance(font, str)): raise TypeError("font attribute must be a string such as \"myFont\"")
+        
+        self.parent = parent
         #Styling Here
         s = ttk.Style()
-        s.configure("BW.TLabel", background="red")
-        
-        
-        self.frame = ttk.Frame(master=parent.root, width=0, height=0, style="BW.TLabel")
+        s.configure("TFrame", background="red")
+
+        self.frame = ttk.Frame(master=parent.root, width=0, height=0, style="TFrame")
         """
         there are only 4 cases
         #1 - only width is percentage (100%, 500px)
@@ -59,6 +88,8 @@ class Frame:
         self.frame.pack()
         self.frame.pack_propagate(False)
 
+
+    
     def _resize_case_1(self, event):
         print("init resize 1")
         self.width = event.width * (self.pwidth / 100)
