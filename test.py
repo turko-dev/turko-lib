@@ -1,6 +1,5 @@
 from turko import *
 
-
 turko = Turko()
-frame = Frame(turko, 100, 500)
+frame = Frame(turko, 200, "50%")
 turko.run()
