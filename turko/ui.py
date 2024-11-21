@@ -1,7 +1,15 @@
-from tkinter import ttk
+from tkinter import YES, ttk
 from tkinter import font
+from tkinter import Canvas
 
-
+class Label:
+    def __init__(self, parent, text):
+        #Let's say the font has a fontSize of 12
+        self.bg = parent.backgroundColor
+        self.label = Canvas(parent.root, width=100, height=15, highlightthickness=0, bg=self.bg)
+        
+        self.label.create_text(50, 10, text=text, fill="White", font=("Helvetica 15"))
+        self.label.pack()
 
 
 class Font:
@@ -9,35 +17,23 @@ class Font:
         """
         E.g. font = Font(name, family, size, weight)
         """
-        defaultFont = font.Font(family='Helvetica', name='myFont', size=12, weight='bold')
         defaultValues = {"family": 'Helvetica', "size":12, "weight":'bold'}
-        self.name = name
         
+        self.name = name
         if(family == None):self.family = defaultValues['family']
         else: self.family = family
         if(size == None):self.size = defaultValues['size']
         else: self.size = size
         if(weight == None):self.weight = defaultValues['weight']
         else: self.weight = weight
-        
+
+        self.font = font.Font(family=self.family, name=self.name, size=self.size, weight=self.weight)
 
     def __str__(self):
         return f"<turko.Font(name=\"{self.name}\", family=\"{self.family}\", size={self.size}, weight=\"{self.weight}\")"
 
 class Frame:
-    def __init__(self, parent, width, height, backgroundColor="#FFFFFF", font="DefaultFont"):
-        #Type Validation
-        if not (isinstance(width, str) or isinstance(width, int)): raise TypeError("width attribute must be either a string percentage or a integer pixel value such as \"100%\" or 100")
-        if not (isinstance(height, str) or isinstance(height, int)): raise TypeError("height attribute must be either a string percentage or a integer pixel value such as \"100%\" or 100")
-        if not (isinstance(backgroundColor, str)): raise TypeError("backgroundColor attribute must be a string such as \"#FFFFFF\"")
-        if not (isinstance(font, str)): raise TypeError("font attribute must be a string such as \"myFont\"")
-        
-        self.parent = parent
-        #Styling Here
-        s = ttk.Style()
-        s.configure("TFrame", background="red")
-
-        self.frame = ttk.Frame(master=parent.root, width=0, height=0, style="TFrame")
+    def __init__(self, parent, width, height, backgroundColor):
         """
         there are only 4 cases
         #1 - only width is percentage (100%, 500px)
@@ -45,6 +41,18 @@ class Frame:
         #3 - both width and height is percentage (100%, 50%)
         #4 - non are percentage (500px, 500px)
         """
+        #Type Validation
+        if not (isinstance(width, str) or isinstance(width, int)): raise TypeError("width attribute must be either a string percentage or a integer pixel value such as \"100%\" or 100")
+        if not (isinstance(height, str) or isinstance(height, int)): raise TypeError("height attribute must be either a string percentage or a integer pixel value such as \"100%\" or 100")
+        if not (isinstance(backgroundColor, str)): raise TypeError("backgroundColor attribute must be a string such as \"#FFFFFF\"")
+        self.parent = parent
+        #Styling Here
+        if(len(backgroundColor) != 7):raise ValueError("backgroundColor must be a Hex Code Format such as \"#FAFAFA\"")
+        s = ttk.Style()
+        self.backgroundColor = backgroundColor
+        s.configure('TFrame', background=backgroundColor)
+        self.root = ttk.Frame(master=parent.root, width=0, height=0, style='TFrame')
+        
         if(isinstance(width, str) and (isinstance(height, int))):
             percentage_string = []
             self.percentage_width = ""
@@ -83,32 +91,26 @@ class Frame:
         else:
             self.pwidth = width
             self.pheight = height
-            self.frame.config(width=self.pwidth, height=self.pheight)
+            self.root.config(width=self.pwidth, height=self.pheight)
         
-        self.frame.pack()
-        self.frame.pack_propagate(False)
+        self.root.pack()
+        self.root.pack_propagate(False)
 
 
     
     def _resize_case_1(self, event):
-        print("init resize 1")
         self.width = event.width * (self.pwidth / 100)
         self.height = self.pheight
         if(event.widget == self.parent.root):
-            self.frame.after(0 ,self.frame.config(width=self.width, height=self.height))
-    
+            self.root.after(0 ,self.root.config(width=self.width, height=self.height))
     def _resize_case_2(self, event):
-        print("init resize 2")
         self.width = self.pwidth
         self.height = event.height * (self.pheight / 100)
         if(event.widget == self.parent.root):
-            self.frame.after(0 ,self.frame.config(width=self.width, height=self.height))
+            self.root.after(0 ,self.root.config(width=self.width, height=self.height))
     
     def _resize_case_3(self, event):
-        print("init resize 3")
         self.width = event.width * (self.pwidth / 100)
         self.height = event.height * (self.pheight / 100)
         if(event.widget == self.parent.root):
-            self.frame.after(0 ,self.frame.config(width=self.width, height=self.height))
-
-#IMPLEMENT AFTER() function somewhere here
+            self.root.after(0 ,self.root.config(width=self.width, height=self.height))

@@ -1,8 +1,8 @@
 from turko import *
-
 turko = Turko()
-frame = Frame(turko, 100, "50%")
-myfont = Font("Name")
-print(myfont)
+turko.minsize(200, 200)
+frame = Frame(turko, "100%", "100%", backgroundColor="#090909")
+
+label = Label(frame, "Helloo")
 
 turko.run()
