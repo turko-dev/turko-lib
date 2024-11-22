@@ -3,14 +3,20 @@ from tkinter import font
 from tkinter import Canvas
 
 class Label:
-    def __init__(self, parent, text):
-        #Let's say the font has a fontSize of 12
-        self.bg = parent.backgroundColor
-        self.label = Canvas(parent.root, width=100, height=15, highlightthickness=0, bg=self.bg)
-        
-        self.label.create_text(50, 10, text=text, fill="White", font=("Helvetica 15"))
-        self.label.pack()
+    def __init__(self, parent, text, fg="#000000"):
 
+        textStringLength = len(text)
+        print(textStringLength)
+
+        #Let's say the font has a fontSize of 12
+        widthLetter = 17.5
+        self.bg = parent.backgroundColor
+        self.font = font.Font(family="Helvetica", size=12, weight="normal")
+        
+        self.label = Canvas(parent.root, width=self.font.measure(text), height=20, highlightthickness=0, background=self.bg)
+        self.label.create_text((self.font.measure(text) / 2), 10, text=text, fill=fg, font=self.font)
+        
+        self.label.pack()
 
 class Font:
     def __init__(self, name, family=None, size=None, weight=None):
@@ -18,7 +24,6 @@ class Font:
         E.g. font = Font(name, family, size, weight)
         """
         defaultValues = {"family": 'Helvetica', "size":12, "weight":'bold'}
-        
         self.name = name
         if(family == None):self.family = defaultValues['family']
         else: self.family = family
@@ -26,7 +31,6 @@ class Font:
         else: self.size = size
         if(weight == None):self.weight = defaultValues['weight']
         else: self.weight = weight
-
         self.font = font.Font(family=self.family, name=self.name, size=self.size, weight=self.weight)
 
     def __str__(self):
@@ -46,13 +50,13 @@ class Frame:
         if not (isinstance(height, str) or isinstance(height, int)): raise TypeError("height attribute must be either a string percentage or a integer pixel value such as \"100%\" or 100")
         if not (isinstance(backgroundColor, str)): raise TypeError("backgroundColor attribute must be a string such as \"#FFFFFF\"")
         self.parent = parent
-        #Styling Here
-        if(len(backgroundColor) != 7):raise ValueError("backgroundColor must be a Hex Code Format such as \"#FAFAFA\"")
+        
+        #Styling
         s = ttk.Style()
         self.backgroundColor = backgroundColor
         s.configure('TFrame', background=backgroundColor)
         self.root = ttk.Frame(master=parent.root, width=0, height=0, style='TFrame')
-        
+
         if(isinstance(width, str) and (isinstance(height, int))):
             percentage_string = []
             self.percentage_width = ""
