@@ -20,7 +20,8 @@ class Turko:
 
     def setgeometry(self, event):
         if(event.widget == self.root):
-            print(f"Root Console: {event.width}, {event.height}")
+            pass
+            #print(f"Root Console: {event.width}, {event.height}")
  
         
 

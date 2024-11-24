@@ -26,3 +26,13 @@ frame1 = Frame(turko, "90%", "100px")
 
 turko.run()
 ```
+
+Need to add the below:
+1 - Labels / Done
+2 - Fonts / Done
+3 - Colours / Done
+4 - Frames / Done
+5 - Resizing / Done
+6 - Button
+7 - Text Input
+8 - Layouts
