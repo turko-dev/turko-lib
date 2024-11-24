@@ -31,7 +31,7 @@ class Font:
         return f"<turko.Font(name=\"{self.name}\", family=\"{self.family}\", size={self.size}, weight=\"{self.weight}\")"
 
 class Frame:
-    def __init__(self, parent, width, height, styleName, bg):
+    def __init__(self, parent, width, height, styleName, bg="#FFFFFF", borderwidth=0):
         """
         there are only 4 cases
         #1 - only width is percentage (100%, 500px)
@@ -92,7 +92,7 @@ class Frame:
 
 
         frameStyle = ttk.Style()
-        frameStyle.configure(f"{styleName}.TFrame", background=bg)
+        frameStyle.configure(f"{styleName}.TFrame", borderwidth=borderwidth, relief="solid", background=bg)
      
         self.root = ttk.Frame(master=parent.root, width=0, height=0, style=f"{styleName}.TFrame")
        
