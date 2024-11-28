@@ -18,7 +18,7 @@ turko.run()
 
 <h3>Examples</h3>
 
-```
+```python
 
 from turko import *
 
