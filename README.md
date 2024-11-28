@@ -31,7 +31,7 @@ frame2 = Frame(frame1, width="95%", height=200, styleName="frame2", bg="orange",
 turko.run()
 
 ```
-![alt text](http://github.com/turko-dev/turko-lib/eg.png)
+![alt text](https://github.com/turko-dev/turko-lib/blob/main/eg.png)
 
 Need to add the below:
 1 - Labels / Done
