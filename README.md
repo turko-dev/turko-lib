@@ -33,6 +33,7 @@ turko.run()
 ```
 ![alt text](https://github.com/turko-dev/turko-lib/blob/main/eg.png)
 
+![alt text](https://github.com/turko-dev/turko-lib/blob/main/eg2.png)
 Need to add the below:
 1 - Labels / Done
 2 - Fonts / Done
