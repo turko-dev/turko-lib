@@ -81,7 +81,7 @@ class Frame:
             percentage_string_2.remove('%')
             for a in percentage_string_1: self.percentage_width += a
             for b in percentage_string_2: self.percentage_height += b
-            self.pwibackgroundColordth = int(self.percentage_width)
+            self.pwidth = int(self.percentage_width)
             self.pheight = int(self.percentage_height)
             self.parent.root.bind("<Configure>", self._resize_case_3, add=True)
 
