@@ -1,9 +1,9 @@
 from turko import *
-from tkinter import ttk
 
 turko = Turko()
 turko.minsize(200, 200)
-frame = Frame(turko, "50%", 500, styleName="big", bg="green", borderwidth=2)
-frame = Frame(frame, 100, 500, styleName="small", bg="orange")
+
+frame1 = Frame(turko, width="50%", height=500, styleName="frame1", bg="green", borderwidth=2)
+frame2 = Frame(frame1, width="95%", height=200, styleName="frame2", bg="orange", borderwidth=2)
 
 turko.run()

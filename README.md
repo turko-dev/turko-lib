@@ -27,6 +27,21 @@ frame1 = Frame(turko, "90%", "100px")
 turko.run()
 ```
 
+```
+
+from turko import *
+
+turko = Turko()
+turko.minsize(200, 200)
+
+frame1 = Frame(turko, width="50%", height=500, styleName="frame1", bg="green", borderwidth=2)
+frame2 = Frame(frame1, width="95%", height=200, styleName="frame2", bg="orange", borderwidth=2)
+
+turko.run()
+
+```
+
+
 Need to add the below:
 1 - Labels / Done
 2 - Fonts / Done
