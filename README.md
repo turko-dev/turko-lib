@@ -34,12 +34,3 @@ turko.run()
 ![alt text](https://github.com/turko-dev/turko-lib/blob/main/eg.png)
 
 ![alt text](https://github.com/turko-dev/turko-lib/blob/main/eg2.png)
-Need to add the below:
-1 - Labels / Done
-2 - Fonts / Done
-3 - Colours / Done
-4 - Frames / Done
-5 - Resizing / Done
-6 - Button
-7 - Text Input
-8 - Layouts
