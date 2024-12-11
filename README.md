@@ -20,6 +20,25 @@ turko = Turko()
 turko.title("My Turko App")
 turko.run()
 ```
+Creating and deploying a GUI in Turko-Lib is much easier than while using a library such as Tkinter/PyQT.
+
+```python
+from turko import *
+
+turko = Turko()
+turko.title("My Turko App")
+turko.run()
+```
+
+<h6>Initialise App</h6>
+```python
+turko = Turko()
+```
+
+
+
+
+
 
 <h3>Examples</h3>
 

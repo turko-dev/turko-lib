@@ -1,16 +1,36 @@
-from tkinter import YES, ttk
+from tkinter import ttk
 from tkinter import font
-from tkinter import Canvas
+from tkinter import Label as Lb
+import numpy as np
 
 class Label:
-    def __init__(self, parent, text, fg="#000000"):
+    def __init__(self, parent, text, x, anchor, fg="#000000"):
         #Let's say the font has a fontSize of 12
+        text = text + " "
+        self.x = x
+        self.anchor = anchor
+        #makes accessable to other elements
+        if(str(parent) == "frame"): 
+            parent.childCount += 1
+        self.text = text
+        self.fg = fg
         self.bg = parent.backgroundColor
         self.font = font.Font(family="Helvetica", size=12, weight="normal")
-        self.label = Canvas(parent.root, width=self.font.measure(text), height=20, highlightthickness=0, background=self.bg)
-        self.label.create_text((self.font.measure(text) / 2), 10, text=text, fill=fg, font=self.font)
-        self.label.place(x=10, y=10)
-        """"""
+        self.label = Lb(parent.root, text=self.text, font=self.font, fg=self.fg, bg=self.bg)
+        parent.root.bind("<Configure>", self._resize, add=True)
+
+    def _resize(self, event):
+        self.parentWidth = event.width
+        self.parentHeight = event.height
+        #parent._justification
+
+        """
+        Keep working on this
+        """
+        self.label.place(relx=self.x, rely=0.5, anchor=self.anchor)
+
+    def __str__(self):
+        return "label"
 
 class Font:
     def __init__(self, name, family=None, size=None, weight=None):
@@ -28,10 +48,13 @@ class Font:
         self.font = font.Font(family=self.family, name=self.name, size=self.size, weight=self.weight)
 
     def __str__(self):
-        return f"<turko.Font(name=\"{self.name}\", family=\"{self.family}\", size={self.size}, weight=\"{self.weight}\")"
+        return "font"
 
 class Frame:
     def __init__(self, parent, width, height, styleName, bg="#FFFFFF", borderwidth=0):
+        self.contentJustification = "evenly" #even justification is default
+        self.itemAlignment = "center" #center is default
+        self.childCount = 0
         """
         there are only 4 cases
         #1 - only width is percentage (100%, 500px)
@@ -46,9 +69,9 @@ class Frame:
         if not (isinstance(bg, str)): raise TypeError("backgroundColor attribute must be a string such as \"#FFFFFF\"")
         self.parent = parent
         
+        
         #Styling
         self.backgroundColor = bg
-
         
         if(isinstance(width, str) and (isinstance(height, int))):
             percentage_string = []
@@ -92,41 +115,38 @@ class Frame:
 
 
         frameStyle = ttk.Style()
-        frameStyle.configure(f"{styleName}.TFrame", borderwidth=borderwidth, relief="solid", background=bg)
+        frameStyle.configure(f"{styleName}.TFrame", borderwidth=borderwidth, background=bg, relief="raised") 
      
         self.root = ttk.Frame(master=parent.root, width=0, height=0, style=f"{styleName}.TFrame")
-       
         self.root.update_idletasks()
-        self.root.pack()
         self.root.pack_propagate(False)
-    
-    
+        
+
+        self.root.pack()
+        
+
 
     def _resize_case_1(self, event):
         self.width = event.width * (self.pwidth / 100)
         self.height = self.pheight
-        print(f"{self.width} | {self.height}")
-
         if(event.widget == self.parent.root):
             self.root.after(0 ,self.root.config(width=self.width, height=self.height))
+    
     def _resize_case_2(self, event):
-
         self.width = self.pwidth
         self.height = event.height * (self.pheight / 100)
-        print(f"{self.width} | {self.height}")
-
         if(event.widget == self.parent.root):
             self.root.after(0 ,self.root.config(width=self.width, height=self.height))
     
     def _resize_case_3(self, event):
-        
         self.width = event.width * (self.pwidth / 100)
         self.height = event.height * (self.pheight / 100)
-        print(f"{self.width} | {self.height}")
-
         if(event.widget == self.parent.root):
             self.root.after(0 ,self.root.config(width=self.width, height=self.height))
 
     def _resize_case_4(self, event):
+        self._justification = np.round(np.linspace(0, self.pwidth, self.childCount + 2))
         self.root.after(0, self.root.config(width=self.pwidth, height=self.pheight))
-        print(f"{self.pwidth} | {self.pheight}")
+
+    def __str__(self):
+        return "frame"
