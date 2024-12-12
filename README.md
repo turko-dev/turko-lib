@@ -10,8 +10,9 @@ git clone https://github.com/turko-dev/turko-lib.git
 
 python3 app.py
 ```
-
+<br>
 <hr/>
+<br>
 
 <h2>Documentation</h3>
 
@@ -37,8 +38,9 @@ turko.run()
 ```python
 turko = Turko()
 ```
-
+<br>
 <hr/>
+<br>
 
 <h2>Examples</h3>
 
