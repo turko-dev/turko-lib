@@ -5,7 +5,7 @@ Some features of Turko-Lib that may be similar to traditional web-design and dev
 
 <h3>Installation</h3>
 
-```console
+```bash
 git clone https://github.com/turko-dev/turko-lib.git
 
 python3 app.py
@@ -35,11 +35,6 @@ turko.run()
 ```python
 turko = Turko()
 ```
-
-
-
-
-
 
 <h3>Examples</h3>
 
