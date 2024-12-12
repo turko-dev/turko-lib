@@ -3,7 +3,7 @@ This is a Python GUI Library build to improve on the inconsistencies and unneces
 
 Some features of Turko-Lib that may be similar to traditional web-design and development may be responsive containers. (Similar to justify-content, align-items, display properties).
 
-<h3>Installation</h3>
+<h2>Installation</h3>
 
 ```bash
 git clone https://github.com/turko-dev/turko-lib.git
@@ -11,7 +11,9 @@ git clone https://github.com/turko-dev/turko-lib.git
 python3 app.py
 ```
 
-<h3>Documentation</h3>
+<hr/>
+
+<h2>Documentation</h3>
 
 ```python
 from turko import *
@@ -30,13 +32,15 @@ turko.title("My Turko App")
 turko.run()
 ```
 
-<h6>Initialise App</h6>
+<h4>Initialise App</h6>
 
 ```python
 turko = Turko()
 ```
 
-<h3>Examples</h3>
+<hr/>
+
+<h2>Examples</h3>
 
 ```python
 
