@@ -5,7 +5,7 @@ Some features of Turko-Lib that may be similar to traditional web-design and dev
 
 <h3>Installation</h3>
 
-```python
+```console
 git clone https://github.com/turko-dev/turko-lib.git
 
 python3 app.py
@@ -31,6 +31,7 @@ turko.run()
 ```
 
 <h6>Initialise App</h6>
+
 ```python
 turko = Turko()
 ```
@@ -50,7 +51,7 @@ turko = Turko()
 turko.minsize(200, 200)
 
 frame1 = Frame(turko, width="50%", height=500, styleName="frame1", bg="green", borderwidth=2)
-frame2 = Frame(frame1, width="95%", height=200, styleName="frame2", bg="orange", borderwidth=2)
+frame2 = Frame(frame1, width="50%", height="100%", styleName="frame2", bg="orange", borderwidth=2)
 
 turko.run()
 
