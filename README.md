@@ -53,4 +53,3 @@ turko.run()
 ```
 ![alt text](https://github.com/turko-dev/turko-lib/blob/main/imgs/eg.png)
 
-![alt text](https://github.com/turko-dev/turko-lib/blob/main/imgs/eg2.png)
