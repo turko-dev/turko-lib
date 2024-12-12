@@ -51,6 +51,6 @@ frame2 = Frame(frame1, width="50%", height="100%", styleName="frame2", bg="orang
 turko.run()
 
 ```
-![alt text](https://github.com/turko-dev/turko-lib/blob/main/eg.png)
+![alt text](https://github.com/turko-dev/turko-lib/imgs/eg.png)
 
-![alt text](https://github.com/turko-dev/turko-lib/blob/main/eg2.png)
+![alt text](https://github.com/turko-dev/turko-lib/imgs/eg2.png)
