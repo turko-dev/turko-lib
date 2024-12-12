@@ -1,8 +1,9 @@
 from tkinter import ttk
 import numpy as np
 
+frameCount = 0
 class Frame:
-    def __init__(self, parent, width, height, styleName, bg="#FFFFFF", borderwidth=0):
+    def __init__(self, parent, width, height, bg="#FFFFFF", borderwidth=0):
         
         #Frame Parent & Children Configuration
         self.parent = parent
@@ -13,8 +14,9 @@ class Frame:
         self.itemAlignment = "center" #center is default
 
         #Styling Configuration
-
-        self.styleName = styleName
+        global frameCount
+        frameCount += 1
+        self.styleName = f"frame{frameCount}"
 
 #Resize Case 1 Binding
         if(isinstance(width, str) and (isinstance(height, int))):
@@ -66,7 +68,7 @@ class Frame:
         
 
         #Frame Init
-        self.root = ttk.Frame(master=parent.root, width=0, height=0, style=f"{styleName}.TFrame")
+        self.root = ttk.Frame(master=parent.root, width=0, height=0, style=f"{self.styleName}.TFrame")
         self.root.update_idletasks()
         self.root.pack_propagate(False)
         self.root.pack()

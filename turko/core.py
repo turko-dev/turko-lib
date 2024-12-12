@@ -7,9 +7,6 @@ class Turko:
         Initialise Core Turko App
         ---------------------------------
         E.g. turko = Turko()
-
-        - initframe will initialise a base frame for the app to load
-        - framepadding will give initframe a padding
         """
         self.root = tk.Tk()
         self.root.title("Turko App")
@@ -24,8 +21,6 @@ class Turko:
             pass
             #print(f"Root Console: {event.width}, {event.height}")
  
-        
-
     def monitorcontrol(self, xi):
         """
         #Multiple Monitor Support Controls
