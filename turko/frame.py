@@ -1,54 +1,5 @@
 from tkinter import ttk
-from tkinter import font
-from tkinter import Label as Lb
 import numpy as np
-
-class Label:
-    def __init__(self, parent, text, x, anchor, fg="#000000"):
-        #Let's say the font has a fontSize of 12
-        text = text + " "
-        self.x = x
-        self.anchor = anchor
-        #makes accessable to other elements
-        if(str(parent) == "frame"): 
-            parent.childCount += 1
-        self.text = text
-        self.fg = fg
-        self.bg = parent.backgroundColor
-        self.font = font.Font(family="Helvetica", size=12, weight="normal")
-        self.label = Lb(parent.root, text=self.text, font=self.font, fg=self.fg, bg=self.bg)
-        parent.root.bind("<Configure>", self._resize, add=True)
-
-    def _resize(self, event):
-        self.parentWidth = event.width
-        self.parentHeight = event.height
-        #parent._justification
-
-        """
-        Keep working on this
-        """
-        self.label.place(relx=self.x, rely=0.5, anchor=self.anchor)
-
-    def __str__(self):
-        return "label"
-
-class Font:
-    def __init__(self, name, family=None, size=None, weight=None):
-        """
-        E.g. font = Font(name, family, size, weight)
-        """
-        defaultValues = {"family": 'Helvetica', "size":12, "weight":'bold'}
-        self.name = name
-        if(family == None):self.family = defaultValues['family']
-        else: self.family = family
-        if(size == None):self.size = defaultValues['size']
-        else: self.size = size
-        if(weight == None):self.weight = defaultValues['weight']
-        else: self.weight = weight
-        self.font = font.Font(family=self.family, name=self.name, size=self.size, weight=self.weight)
-
-    def __str__(self):
-        return "font"
 
 class Frame:
     def __init__(self, parent, width, height, styleName, bg="#FFFFFF", borderwidth=0):
@@ -60,8 +11,11 @@ class Frame:
         #Frame Content & Item Justification & Alignment
         self.contentJustification = "evenly" #even justification is default
         self.itemAlignment = "center" #center is default
-        
-        
+
+        #Styling Configuration
+
+        self.styleName = styleName
+
 #Resize Case 1 Binding
         if(isinstance(width, str) and (isinstance(height, int))):
             percentage_string = []
@@ -108,7 +62,7 @@ class Frame:
         self.borderWidth = borderwidth
         self.backgroundColor = bg
         frameStyle = ttk.Style()
-        frameStyle.configure(f"{styleName}.TFrame", borderwidth=self.borderWidth, background=self.bg, relief="raised") 
+        frameStyle.configure(f"{self.styleName}.TFrame", borderwidth=self.borderWidth, background=self.backgroundColor, relief="raised") 
         
 
         #Frame Init
@@ -116,9 +70,7 @@ class Frame:
         self.root.update_idletasks()
         self.root.pack_propagate(False)
         self.root.pack()
-        
 
-    
     #Resize Case 1
     def _resize_case_1(self, event):
         self.width = event.width * (self.pwidth / 100)
@@ -148,3 +100,4 @@ class Frame:
     #Return String Format
     def __str__(self):
         return "frame"
+

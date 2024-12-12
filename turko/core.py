@@ -14,6 +14,7 @@ class Turko:
         self.root = tk.Tk()
         self.root.title("Turko App")
         self.root.attributes("-zoomed", True)
+        self.frameCount = 0
         self.width = 0
         self.height = 0
         self.root.bind("<Configure>", self.setgeometry)
@@ -85,7 +86,9 @@ class Turko:
         """
         self.root.minsize(minwidth, minheight)
         self.root.maxsize(maxwidth, maxheight)
-        
+    
+    def __str__(self):
+        return "root"
         
     def run(self):
         """
