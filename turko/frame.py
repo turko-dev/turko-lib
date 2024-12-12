@@ -10,13 +10,15 @@ class Frame:
         self.childCount = 0       
         
         #Frame Content & Item Justification & Alignment
-        self.contentJustification = "evenly" #even justification is default
+        self.contentJustification = "between" #even justification is default
         self.itemAlignment = "center" #center is default
 
         #Styling Configuration
         global frameCount
         frameCount += 1
         self.styleName = f"frame{frameCount}"
+        
+
 
 #Resize Case 1 Binding
         if(isinstance(width, str) and (isinstance(height, int))):
@@ -69,9 +71,15 @@ class Frame:
 
         #Frame Init
         self.root = ttk.Frame(master=parent.root, width=0, height=0, style=f"{self.styleName}.TFrame")
+        self.root.bind("<Configure>", self._frameBinding ,add=True)
         self.root.update_idletasks()
         self.root.pack_propagate(False)
         self.root.pack()
+
+    def _frameBinding(self, event):
+        self._justification = np.round(np.linspace(0, event.width, self.childCount + 2))
+        self.maxItem = max(self._justification)
+        self.minItem = 0
 
     #Resize Case 1
     def _resize_case_1(self, event):
@@ -96,7 +104,6 @@ class Frame:
 
     #Resize Case 4
     def _resize_case_4(self, event):
-        self._justification = np.round(np.linspace(0, self.pwidth, self.childCount + 2))
         self.root.after(0, self.root.config(width=self.pwidth, height=self.pheight))
 
     #Return String Format

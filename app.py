@@ -5,11 +5,25 @@ turko.minsize(200, 200)
 
 frame1 = Frame(turko, width="50%", height="50%", bg="orange", borderwidth=2)
 
-lbl1 = Label(frame1, text="Test", fg="white", x=0, anchor="w")
-lbl2 = Label(frame1, text="Test", fg="white", x=1, anchor="e")
+lbl1 = Label(frame1, text="Test", fg="white", x=0)
+lbl3 = Label(frame1, text="Test", fg="white", x=0.5)
+lbl2 = Label(frame1, text="Test", fg="white", x=1)
 
-frame2 = Frame(turko, width="50%", height="50%", bg="blue", borderwidth=2)
-lbl3 = Label(frame2, text="Test", fg="white", x=0, anchor="w")
-lbl4 = Label(frame2, text="Test", fg="white", x=1, anchor="e")
+"""
+If there are 3 children in the frame
+there are 5 numbers in the justification board to
+take into account
+
+0 
+171 / 683
+342 / 683
+512 / 683
+1
+
+these numbers are all relative to the width
+of the parent frame.
+
+
+"""
 
 turko.run()
