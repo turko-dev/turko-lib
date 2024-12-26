@@ -1,6 +1,6 @@
 import tkinter as tk
 from screeninfo import get_monitors
-from sys import getwindowsversion
+from sys import getwindowsversion, platform
 class Turko:
     def __init__(self):
         """
@@ -11,12 +11,15 @@ class Turko:
         self.root = tk.Tk()
         self.root.title("Turko App")
         #Make OS Checker
-        if(getwindowsversion() >= 22000):
-            pass #Windows 11 (FullScreen Start Unsupported)
-        else:
-            pass #Windows 10 (FullScreen Start Supported)
-        self.root.attributes("-alpha", True)
-
+        if("win" in platform):
+            if(getwindowsversion().build >= 22000):
+                pass #Windows 11 (FullScreen Start Unsupported)
+            else:
+                self.root.attributes("-zoomed", True)
+                #Windows 10 (FullScreen Start Supported)
+        """
+        Linux Check must be done on linux
+        """
         self.frameCount = 0
         self.width = 0
         self.height = 0
